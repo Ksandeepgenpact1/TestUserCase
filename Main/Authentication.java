@@ -1,19 +1,17 @@
-package Main;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Authentication {
+public class Authenticator {
 
     private static Map<String, String> users = new HashMap<>();
 
     public static void main(String[] args) {
-        // Register a user
-        registerUser("john123", "password123");
-        
+    
         // Prompt for username and password
-        Scanner scanner = new Scanner(System.in);
+        final Scanner scanner = new Scanner(System.in);
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         System.out.print("Enter password: ");
@@ -29,13 +27,14 @@ public class Authentication {
     }
 
     private static void registerUser(String username, String password) {
-        users.put(username, password);
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        users.put(username, hashedPassword);
     }
 
     private static boolean authenticateUser(String username, String password) {
         if (users.containsKey(username)) {
-            String storedPassword = users.get(username);
-            return storedPassword.equals(password);
+            String storedHashedPassword = users.get(username);
+            return BCrypt.checkpw(password, storedHashedPassword);
         }
         return false;
     }

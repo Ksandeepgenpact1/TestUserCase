@@ -134,3 +134,75 @@ The implementation of the `Transaction` class can be broken down into several ke
 ## Conclusion
 The `Transaction` class effectively manages the complexity of handling financial transactions by providing a structured approach to executing and tracking deposits, withdrawals, and transfers. With built-in validation, status tracking, and detailed reporting capabilities, it enhances the overall functionality of the banking system.
 ---
+-(2025-02-19 06:23:51)
+Certainly! Below is a structured feature documentation based on the provided code for the `Transaction` class.
+
+---
+
+# Feature Documentation for `Transaction` Class
+
+## Purpose
+The `Transaction` class is designed to represent financial transactions within a system. It encapsulates the essential properties and behaviors related to a transaction, facilitating the management, tracking, and processing of financial activities.
+
+## Description
+The `Transaction` class includes attributes to define a transaction's essential characteristics, such as its amount, date, type, and status. This feature allows for the creation of transaction objects that can be easily manipulated, displayed, and integrated into a larger financial system.
+
+### Functional Changes
+1. **Initialization of Transactions**: The class allows the creation of transaction instances with specific attributes, which include:
+   - `amount`: The monetary value of the transaction.
+   - `date`: The date when the transaction occurred.
+   - `type`: The type of transaction (e.g., credit, debit).
+   - `status`: The current status of the transaction (e.g., pending, completed).
+
+2. **String Representation**: The class provides a method to return a string representation of the transaction, making it easier to present transaction details in a readable format.
+
+3. **Validation of Transaction Status**: The implementation allows for validation checks on the transaction's status, ensuring that only valid statuses are assigned.
+
+## Implementation
+
+### Class Definition
+```python
+class Transaction:
+    def __init__(self, amount, date, transaction_type, status):
+        self.amount = amount
+        self.date = date
+        self.transaction_type = transaction_type
+        self.status = status
+```
+
+### Attributes
+- **amount**: (float) Represents the monetary value of the transaction.
+- **date**: (datetime) Represents the date when the transaction occurred.
+- **transaction_type**: (str) Indicates the type of transaction (e.g., "credit" or "debit").
+- **status**: (str) Indicates the current status of the transaction (e.g., "pending", "completed").
+
+### Methods
+```python
+def __str__(self):
+    return f"Transaction(amount={self.amount}, date={self.date}, type={self.transaction_type}, status={self.status})"
+```
+- **`__str__()`**: Returns a string representation of the `Transaction` instance, providing a summary of its key attributes.
+
+## Usage Example
+```python
+from datetime import datetime
+
+# Creating a new transaction
+new_transaction = Transaction(
+    amount=150.75,
+    date=datetime.now(),
+    transaction_type='credit',
+    status='pending'
+)
+
+# Displaying the transaction details
+print(new_transaction)  # Outputs: Transaction(amount=150.75, date=..., type=credit, status=pending)
+```
+
+## Conclusion
+The `Transaction` class serves as a fundamental building block for managing financial transactions in a software application. Its clear structure and methods enable efficient creation, management, and representation of transaction data, thereby enhancing the overall functionality of the financial system.
+
+--- 
+
+This documentation outlines the purpose, description, functional changes, and details of the `Transaction` class, providing a comprehensive overview for developers and users.
+---

@@ -405,3 +405,62 @@ Two constructors are provided:
 ### Summary
 The `Transaction` class provides a comprehensive solution for managing bank transactions. By integrating transaction processing, status management, and detailed output, it enhances the user experience in handling financial operations effectively. The class is designed to ensure proper balance checks and provides clear feedback on transaction success or failure.
 ---
+-(2025-03-20 12:56:49)
+# Feature Documentation: Transaction Management System
+
+## Purpose of the Feature
+The `Transaction` class facilitates the management of financial transactions within a banking application. It allows users to perform various types of transactions, including deposits, withdrawals, and transfers between accounts. The feature is designed to provide a structured way to manage the data related to these transactions, including their status and details, ensuring accuracy and accountability in the banking process.
+
+## Description
+The `Transaction` class includes attributes for the involved accounts, the transaction amount, type, status, and date. It provides constructors for creating transactions of different types and methods for processing the transactions, managing their statuses, and displaying transaction details. This feature enhances the banking application by allowing for clear transaction tracking and management, leading to better user experience and operational efficiency.
+
+### Key Attributes
+- `senderAccount`: The account from which the funds are being withdrawn or deposited.
+- `receiverAccount`: The account receiving funds in a transfer.
+- `amount`: The amount of money involved in the transaction.
+- `transactionType`: A string indicating the type of transaction (deposit, withdrawal, transfer).
+- `transactionStatus`: A string indicating the current status of the transaction (pending, completed, failed).
+- `transactionDate`: The date when the transaction was created.
+
+### Key Methods
+- **Constructors**:
+  - `Transaction(Account senderAccount, double amount, String transactionType)`: Initializes a transaction for deposit or withdrawal.
+  - `Transaction(Account senderAccount, Account receiverAccount, double amount, String transactionType)`: Initializes a transfer transaction.
+
+- **Getters and Setters**: Methods to access and modify the attributes of the transaction.
+
+- **processTransaction()**: 
+  - Processes the transaction based on its type.
+  - For deposits, it adds the amount to the sender's account.
+  - For withdrawals, it checks if the balance is sufficient and deducts the amount if it is.
+  - For transfers, it deducts the amount from the sender's account and adds it to the receiver's account, provided there are sufficient funds.
+  - Updates the transaction status to "completed" or "failed" based on the outcome of the operation.
+
+- **displayTransactionDetails()**: 
+  - Outputs the transaction details to the console, including date, type, status, amount, and involved accounts.
+
+## Implementation of the Feature
+The `Transaction` class is implemented in Java and can be integrated into a broader banking application. Here is an overview of how to implement and utilize this feature:
+
+1. **Instantiate Accounts**: Create instances of the `Account` class (which is assumed to exist but is not provided in the code) for the sender and receiver.
+   
+2. **Create Transactions**:
+   - For a deposit or withdrawal:
+     ```java
+     Transaction depositTransaction = new Transaction(senderAccount, amount, "deposit");
+     depositTransaction.processTransaction();
+     depositTransaction.displayTransactionDetails();
+     ```
+   - For a transfer:
+     ```java
+     Transaction transferTransaction = new Transaction(senderAccount, receiverAccount, amount, "transfer");
+     transferTransaction.processTransaction();
+     transferTransaction.displayTransactionDetails();
+     ```
+
+3. **Manage Transaction States**: Use the `processTransaction()` method to update the transaction status based on business logic and ensure that the application handles insufficient funds and invalid types gracefully.
+
+4. **Display Transaction Info**: After processing, use `displayTransactionDetails()` to provide users with a summary of their transactions.
+
+This feature enhances the banking application by ensuring that transactions are processed reliably and transparently, contributing to better financial management for users.
+---
